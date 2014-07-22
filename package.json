@@ -1,0 +1,32 @@
+{
+  "name": "angular-server-form",
+  "description": "Simple server validation with angular",
+  "license": "MIT",
+  "main": "",
+  "keywords": [],
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cesarandreu/angular-server-form.git"
+  },
+  "author": {
+    "name": "Cesar Andreu",
+    "email": "cesarandreu@gmail.com",
+    "url": "https://github.com/cesarandreu"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/gulp test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.6",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^0.3.1",
+    "karma": "^0.12.17",
+    "karma-jasmine": "^0.1.5",
+    "karma-phantomjs-launcher": "^0.1.4"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "angular-server-form",
+  "description": "simple server validation with angular",
+  "version": "0.0.0",
+  "homepage": "https://github.com/cesarandreu/angular-server-form",
+  "authors": [
+    "Cesar Andreu <cesarandreu@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cesarandreu/angular-server-form.git"
+  },
+  "keywords": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "src",
+    "gulpfile.js",
+    "karma.conf.js",
+    "package.json",
+    "bower.json"
+  ],
+  "main": "",
+  "dependencies": {
+    "angular": "~1.3.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.3.0"
+  }
+}
