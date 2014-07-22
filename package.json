@@ -18,6 +18,8 @@
     "node": ">=0.10.0"
   },
   "scripts": {
+    "build": "./node_modules/.bin/gulp build",
+    "dev": "./node_modules/.bin/gulp tdd",
     "test": "./node_modules/.bin/gulp test"
   },
   "dependencies": {},
