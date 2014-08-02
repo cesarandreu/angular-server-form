@@ -56,7 +56,8 @@ gulp.task('e2e', ['server', 'webdriverUpdate'], function (done) {
 
   gulp.src('test/e2e/*.spec.js')
     .pipe(protractor.protractor({
-       configFile: 'protractor.conf.js'
+      configFile: 'protractor.conf.js',
+      args: ['--baseUrl', 'http://' + server.address().address + ':' + server.address().port]
      }))
     .on('error', close)
     .on('end', close);
