@@ -5,9 +5,9 @@ exports.config = {
     'test/e2e/*.spec.js',
   ],
 
-  chromeDriver: './node_modules/protractor/selenium/chromedriver',
   capabilities: {
-    browserName: 'chrome'
+    browserName: 'phantomjs',
+    'phantomjs.binary.path': './node_modules/phantomjs/bin/phantomjs'
   },
 
   baseUrl: 'http://127.0.0.1:9999',
