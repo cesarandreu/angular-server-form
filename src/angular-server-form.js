@@ -22,28 +22,28 @@
         form.$server = message;
       }
 
+      // Private
+      // recurse over the form
+      // if the property is a value it gets assigned
+      // otherwise dive inside
+      function formCrawler (form) {
+        var response = {};
+        for (var prop in form) {
+          if (form.hasOwnProperty(prop) && prop[0] !== '$') {
+            if (form[prop].hasOwnProperty('$modelValue')) {
+              response[prop] = form[prop].$modelValue;
+            } else {
+              response[prop] = formCrawler(form[prop]);
+            }
+          }
+        }
+        return response;
+      }
+
       var self = this;
 
       // Serialize form to data object
       self.serialize = function serialize (form) {
-
-        // recurse over the form
-        // if the property is a value it gets assigned
-        // otherwise dive inside
-        function formCrawler (form) {
-          var response = {};
-          for (var prop in form) {
-            if (form.hasOwnProperty(prop) && prop[0] !== '$') {
-              if (form[prop].hasOwnProperty('$modelValue')) {
-                response[prop] = form[prop].$modelValue;
-              } else {
-                response[prop] = formCrawler(form[prop]);
-              }
-            }
-          }
-          return response;
-        }
-
         var response = {};
 
         // set root if form name is set
@@ -70,10 +70,10 @@
             if (errors.hasOwnProperty(prop)) {
               if (form.hasOwnProperty(prop)) {
                 // If the form has a property with the same error name
-                applyErrors(form[prop], errors[prop]);
+                self.applyErrors(form[prop], errors[prop]);
               } else if (form.$name === prop) {
                 // errors object is for the whole form, dive in
-                applyErrors(form, errors[prop]);
+                self.applyErrors(form, errors[prop]);
               } else {
                 if (provider.logging) {
                   $log.warn('No place to render property', prop, 'in form', form);
@@ -128,7 +128,6 @@
       return self;
     }];
   }])
-
   .directive('serverForm', ['serverForm', function (serverForm) {
 
     return {
@@ -143,20 +142,15 @@
       link: function postLink(scope, iElement, iAttrs, form) {
 
         function submitForm (ev) {
-          if (!submitting) {
+          if (!form.$submitting) {
             var config = {
               url: scope.url,
               method: scope.method ? scope.method : 'POST',
               data: serverForm.serialize(form)
             };
 
-            submitting = true;
-
             serverForm.submit(form, config)
-            .then(scope.onSuccess, scope.onError)
-            .finally(function () {
-              submitting = false;
-            });
+            .then(scope.onSuccess, scope.onError);
           }
 
           ev.preventDefault();
