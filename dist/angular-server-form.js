@@ -22,28 +22,28 @@
         form.$server = message;
       }
 
+      // Private
+      // recurse over the form
+      // if the property is a value it gets assigned
+      // otherwise dive inside
+      function formCrawler (form) {
+        var response = {};
+        for (var prop in form) {
+          if (form.hasOwnProperty(prop) && prop[0] !== '$') {
+            if (form[prop].hasOwnProperty('$modelValue')) {
+              response[prop] = form[prop].$modelValue;
+            } else {
+              response[prop] = formCrawler(form[prop]);
+            }
+          }
+        }
+        return response;
+      }
+
       var self = this;
 
       // Serialize form to data object
       self.serialize = function serialize (form) {
-
-        // recurse over the form
-        // if the property is a value it gets assigned
-        // otherwise dive inside
-        function formCrawler (form) {
-          var response = {};
-          for (var prop in form) {
-            if (form.hasOwnProperty(prop) && prop[0] !== '$') {
-              if (form[prop].hasOwnProperty('$modelValue')) {
-                response[prop] = form[prop].$modelValue;
-              } else {
-                response[prop] = formCrawler(form[prop]);
-              }
-            }
-          }
-          return response;
-        }
-
         var response = {};
 
         // set root if form name is set
@@ -142,22 +142,21 @@
       link: function postLink(scope, iElement, iAttrs, form) {
 
         function submitForm (ev) {
-          if (!form.$submitting) {
-            var config = {
-              url: scope.url,
-              method: scope.method ? scope.method : 'POST',
-              data: serverForm.serialize(form)
-            };
+          scope.$apply(function () {
+            if (!form.$submitting) {
+              var config = {
+                url: scope.url,
+                method: scope.method ? scope.method : 'POST',
+                data: serverForm.serialize(form)
+              };
 
-            serverForm.submit(form, config)
-            .then(scope.onSuccess, scope.onError);
-          }
+              serverForm.submit(form, config)
+              .then(scope.onSuccess, scope.onError);
+            }
 
-          ev.preventDefault();
-          scope.$apply();
+            ev.preventDefault();
+          });
         }
-
-        var submitting = false;
 
         iElement.on('submit', submitForm);
         scope.$on('destroy', function () {
