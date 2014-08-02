@@ -47,8 +47,7 @@ gulp.task('tdd', function (done) {
 
 /// Run e2e tests once and exit
 gulp.task('webdriverUpdate', protractor.webdriver_update);
-gulp.task('webdriverStart', ['webdriverUpdate'], protractor.webdriver_start);
-gulp.task('e2e', ['server', 'webdriverStart'], function (done) {
+gulp.task('e2e', ['server', 'webdriverUpdate'], function (done) {
   var close = function (err) {
     server.close(function () {
       done(err);
