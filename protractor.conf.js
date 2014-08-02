@@ -9,13 +9,10 @@ exports.config = {
   ],
 
   capabilities: {
-    browserName: 'chrome',
-    count: 1,
-    shardTestFiles: false,
-    maxInstances: 1
+    browserName: 'chrome'
   },
 
-  baseUrl: 'http://localhost:9999',
+  baseUrl: 'http://127.0.0.1:9999',
   allScriptsTimeout: 11000,
   getPageTimeout: 10000,
 
