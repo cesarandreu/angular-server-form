@@ -19,16 +19,22 @@
   },
   "scripts": {
     "build": "./node_modules/.bin/gulp build",
-    "dev": "./node_modules/.bin/gulp tdd",
-    "test": "./node_modules/.bin/gulp test"
+    "tdd": "./node_modules/.bin/gulp tdd",
+    "unit": "./node_modules/.bin/gulp unit",
+    "e2e": "./node_modules/.bin/gulp e2e",
+    "examples": "./node_modules/.bin/gulp server",
+    "test": "./node_modules/.bin/gulp unit && ./node_modules/.bin/gulp e2e"
   },
   "dependencies": {},
   "devDependencies": {
+    "express": "^4.7.2",
     "gulp": "^3.8.6",
+    "gulp-protractor": "0.0.11",
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^0.3.1",
     "karma": "^0.12.17",
     "karma-jasmine": "^0.1.5",
-    "karma-phantomjs-launcher": "^0.1.4"
+    "karma-phantomjs-launcher": "^0.1.4",
+    "protractor": "^1.0.0"
   }
 }
