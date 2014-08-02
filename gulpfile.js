@@ -6,7 +6,6 @@ var gulp = require('gulp'),
   karma = require('karma').server,
   express = require('express'),
   protractor = require('gulp-protractor'),
-  path = require('path'),
   server;
 
 gulp.task('default', ['unit', 'e2e', 'build']);
@@ -25,7 +24,7 @@ gulp.task('build', function () {
 // Examples server
 gulp.task('server', function (done) {
   server = express();
-  server.use(express.static(path.resolve(__dirname, 'examples')));
+  server.use(express.static(__dirname + '/examples/'));
   server = server.listen(9999, function () {
     console.log('Listening on port 9999');
     done();
