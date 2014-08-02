@@ -1,7 +1,7 @@
 {
   "name": "angular-server-form",
   "description": "simple server validation with angular",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/cesarandreu/angular-server-form",
   "authors": [
     "Cesar Andreu <cesarandreu@gmail.com>"
