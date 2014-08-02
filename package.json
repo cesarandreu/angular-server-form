@@ -4,7 +4,7 @@
   "license": "MIT",
   "main": "",
   "keywords": [],
-  "version": "0.0.0",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/cesarandreu/angular-server-form.git"
