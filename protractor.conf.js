@@ -11,6 +11,7 @@ exports.config = {
   },
 
   baseUrl: 'http://localhost:9999',
+  rootElement: 'body',
   allScriptsTimeout: 11000,
   getPageTimeout: 10000,
 

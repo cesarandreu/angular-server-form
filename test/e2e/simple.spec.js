@@ -1,16 +1,16 @@
 'use strict';
 
 var simple = {
-  navigate: function () {
-    return browser.get('/simple');
-  },
   favorite: element(by.name('favorite')),
   submit: element(by.buttonText('Submit')),
   messages: element(by.id('messages'))
 };
 
 describe('Simple Form', function () {
-  simple.navigate();
+
+  beforeEach(function () {
+    browser.get('/simple');
+  });
 
   it('shows error when you submit empty favorite', function () {
     simple.favorite.clear();
