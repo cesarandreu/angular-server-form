@@ -10,7 +10,7 @@ exports.config = {
     'phantomjs.binary.path': './node_modules/phantomjs/bin/phantomjs'
   },
 
-  baseUrl: 'http://127.0.0.1:9999',
+  baseUrl: 'http://localhost:9999',
   allScriptsTimeout: 11000,
   getPageTimeout: 10000,
 
