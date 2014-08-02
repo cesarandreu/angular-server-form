@@ -142,22 +142,21 @@
       link: function postLink(scope, iElement, iAttrs, form) {
 
         function submitForm (ev) {
-          if (!form.$submitting) {
-            var config = {
-              url: scope.url,
-              method: scope.method ? scope.method : 'POST',
-              data: serverForm.serialize(form)
-            };
+          scope.$apply(function () {
+            if (!form.$submitting) {
+              var config = {
+                url: scope.url,
+                method: scope.method ? scope.method : 'POST',
+                data: serverForm.serialize(form)
+              };
 
-            serverForm.submit(form, config)
-            .then(scope.onSuccess, scope.onError);
-          }
+              serverForm.submit(form, config)
+              .then(scope.onSuccess, scope.onError);
+            }
 
-          ev.preventDefault();
-          scope.$apply();
+            ev.preventDefault();
+          });
         }
-
-        var submitting = false;
 
         iElement.on('submit', submitForm);
         scope.$on('destroy', function () {
