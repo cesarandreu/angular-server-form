@@ -1,13 +1,11 @@
 'use strict';
 
 exports.config = {
-
-  seleniumArgs: [],
-  chromeOnly: false,
   specs: [
     'test/e2e/*.spec.js',
   ],
 
+  chromeDriver: './node_modules/protractor/selenium/chromedriver',
   capabilities: {
     browserName: 'chrome'
   },
