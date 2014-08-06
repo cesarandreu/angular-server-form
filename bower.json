@@ -18,7 +18,7 @@
     "test",
     "src",
     "gulpfile.js",
-    "karma.conf.js",
+    "*.conf.js",
     "package.json",
     "bower.json"
   ],
