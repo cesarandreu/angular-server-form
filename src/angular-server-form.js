@@ -7,7 +7,9 @@
     var provider = this;
 
     provider.errorsKey = 'errors';
+    provider.errorCode = 422;
     provider.logging = true;
+
     provider.$get = ['$http', '$q', '$log', function ($http, $q, $log) {
 
       // Private
@@ -112,7 +114,7 @@
           })
           .error(function(res, status) {
             form.$saved = false;
-            if (status === 422) {
+            if (status === provider.errorCode) {
               if (provider.errorsKey) {
                 self.applyErrors(form, res[provider.errorsKey]);
               } else {
